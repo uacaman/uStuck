@@ -16,10 +16,13 @@
       <Filter>Private</Filter>
     </ClInclude>
     <ClInclude Include="Private\uStuck.h" />
+    <ClInclude Include="Private\Types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Private\uStuck.cpp">
       <Filter>Private</Filter>
     </ClCompile>
+    <ClCompile Include="Private\Types.cpp" />
+    <ClCompile Include="Private\uStuckTimer.h" />
   </ItemGroup>
 </Project>

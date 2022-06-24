@@ -33,8 +33,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>F:\OneDrive\Projetos\ARK\ARK-Server-API\out_lib\;F:\OneDrive\Projetos\ARK\Ark-Server-Plugins\Permissions\out_lib\;$(LibraryPath)</LibraryPath>
-    <IncludePath>F:\OneDrive\Projetos\ARK\Ark-Server-Plugins\Permissions\Permissions\Public;F:\OneDrive\Projetos\ARK\ARK-Server-API\version\Core\Public;$(IncludePath)</IncludePath>
+    <LibraryPath>F:\OneDrive\Projetos\ARK\ARK-Server-API\out_lib\;F:\OneDrive\Projetos\ARK\Ark-Server-Plugins\ArkShop\out_lib;F:\OneDrive\Projetos\ARK\Ark-Server-Plugins\Permissions\out_lib\;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -47,7 +47,7 @@
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;USTUCK_EXPORTS;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>..\uStuck\Public;..\Includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\uStuck\Public;..\Includes;F:\OneDrive\Projetos\ARK\ARK-Server-API\version\Core\Public;F:\OneDrive\Projetos\ARK\Ark-Server-Plugins\ArkShop\ArkShop\Public;F:\OneDrive\Projetos\ARK\Ark-Server-Plugins\Permissions\Permissions\Public</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -57,13 +57,21 @@
       <DelayLoadDLLs>Permissions.dll</DelayLoadDLLs>
       <AdditionalLibraryDirectories>..\Libs;</AdditionalLibraryDirectories>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(OutDir)$(TargetFileName) $(OutDir)$(TargetFileName).ArkApi /y
+
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Private\Types.h" />
     <ClInclude Include="Private\uStuck.h" />
     <ClInclude Include="Private\json.hpp" />
     <ClInclude Include="Public\Base.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Private\uStuckTimer.h" />
+    <ClCompile Include="Private\Types.cpp" />
     <ClCompile Include="Private\uStuck.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
